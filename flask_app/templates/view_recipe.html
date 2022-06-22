@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Recipe</title>
+</head>
+<body>
+    <h1>Welcome {{session['first_name']}}!
+    </h1>
+    <a href="/dashboard">Dashboard</a>
+    <form action="/logout", method="POST">
+        <button type="submit">Logout</button>
+    </form>
+    <h1>{{one_recipe.name}}</h1>
+    <div class="recipecontainer">
+        <table class="table table-hover">
+            <tbody>
+                <tr>
+                    <td>Description:</td>
+                    <td>{{one_recipe.description}}</td>
+                </tr>
+                <tr>
+                    <td>Under 30 minutes:</td>
+                    <td>{{one_recipe.under_30_minutes}}</td>
+                </tr>
+                <tr>
+                    <td>Instructions:</td>
+                    <td>{{one_recipe.instructions}}</td>
+                </tr>
+                <tr>
+                    <td>Date Made:</td>
+                    <td>{{one_recipe.created_at}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

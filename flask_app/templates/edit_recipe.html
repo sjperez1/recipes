@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='index.css')}}">
+    <title>Recipe: Edit</title>
+</head>
+<body>
+    <h1>Edit Recipe</h1>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/logout"></a>
+    <form action="/recipes/edit/{{one_recipe.id}}" method="POST">
+        <div>
+            {% for message in get_flashed_messages(category_filter = ["error_name"]): %}
+                {{message}}
+            {% endfor %}
+        </div>
+        <div>
+            {% for message in get_flashed_messages(category_filter = ["error_description"]): %}
+                {{message}}
+            {% endfor %}
+        </div>
+        <div>
+            {% for message in get_flashed_messages(category_filter = ["error_instructions"]): %}
+                {{message}}
+            {% endfor %}
+        </div>
+        <div>
+            {% for message in get_flashed_messages(category_filter = ["error_created_at"]): %}
+                {{message}}
+            {% endfor %}
+        </div>
+        <div>
+            {% for message in get_flashed_messages(category_filter = ["error_under_30_minutes"]): %}
+                {{message}}
+            {% endfor %}
+        </div>
+        <div>
+            <label for="name">
+                Name:
+            </label>
+        </div>
+        <input type="text" id="name" name="name" value="{{one_recipe.name}}">
+        <div>
+            <label for="description">Description:</label>
+        </div>
+        <textarea name="description" id="description">{{one_recipe.description}}</textarea>
+        <div>
+            <label for="instructions">Instructions:</label>
+        </div>
+        <textarea name="instructions" id="instructions">{{one_recipe.instructions}}</textarea>
+        <div>
+            <label for="created_at">
+                Date Made On:
+            </label>
+        </div>
+        <input type="date" id="created_at" name="created_at" value="{{one_recipe.created_at}}">
+        <div>
+            <label for="under_30_minutes">Under 30 minutes?</label>
+        </div>
+        <input type="radio" name="under_30_minutes" value="1" {% if one_recipe.under_30_minutes == 1%} checked {%endif%}> Yes
+        <input type="radio" name="under_30_minutes" value="0" {% if one_recipe.under_30_minutes == 0%} checked {%endif%}> No
+        <button type="submit">Update</button>
+    </form>
+</body>
+</html>
